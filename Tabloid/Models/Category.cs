@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Tabloid.Models
+﻿namespace Tabloid.Models
 {
     public class Category
     {
