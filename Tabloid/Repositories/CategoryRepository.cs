@@ -19,7 +19,7 @@ namespace Tabloid.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = "Select * from Category";
+                    cmd.CommandText = "Select * from Category Order By Name";
 
                     var reader = cmd.ExecuteReader();
 
