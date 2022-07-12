@@ -7,6 +7,7 @@ namespace Tabloid.Controllers
     [ApiController]
     public class HelloController : ControllerBase
     {
+        [Authorize]
         [HttpGet]
         public IActionResult Hello()
         {
