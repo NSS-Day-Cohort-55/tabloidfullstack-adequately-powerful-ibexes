@@ -19,7 +19,8 @@ namespace Tabloid.Repositories
                 {
                     cmd.CommandText = @"
                         SELECT Id, Name 
-                        FROM Tag";
+                        FROM Tag
+                        ORDER BY Name";
                     
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
