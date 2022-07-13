@@ -4,6 +4,8 @@ import Login from "./Login";
 import Register from "./Register";
 import CategoryList from "./CategoryList";
 import Hello from "./Hello";
+import { PostList } from "./Posts/PostList.js";
+import { UserPostList } from "./Posts/UserPostList";
 import TagList from "./tag/TagList";
 import { PostList } from "./Posts/PostList";
 import { PostDetails } from "./Posts/PostDetails";
@@ -26,6 +28,7 @@ export default function ApplicationViews({ isLoggedIn }) {
         <Route path="posts">
           <Route index element={<PostList/>} />
           <Route path=":id" element={<PostDetails />} />
+          <Route path="user" element={isLoggedIn ? <UserPostList /> : <Navigate to="/login" />} />
         </Route>
       </Routes>
     </main>
