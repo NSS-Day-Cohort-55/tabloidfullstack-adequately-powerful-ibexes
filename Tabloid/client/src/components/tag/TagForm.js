@@ -30,7 +30,6 @@ export const TagForm = () => {
     <Form>
         <FormGroup>
             <Label for="name">New Tag</Label>
-            {/* <br/> */}
             <Input
                 id="name"
                 type="text"
