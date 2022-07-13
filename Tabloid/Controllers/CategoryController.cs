@@ -32,10 +32,10 @@ namespace Tabloid.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(Category cat)
+        public IActionResult Post(string name)
         {
            
-            _catRepository.Add(cat);
+            _catRepository.Add(name);
             return NoContent();
             
         }

@@ -1,8 +1,11 @@
 import React, {useEffect, useState} from "react";
-import { getAllCategories } from "../modules/categoryManager.js";
-import Category from "./Category.js";
+import { getAllCategories } from "../../modules/categoryManager";
+import Category from "./Category"
+import { useNavigate } from "react-router-dom";
+import { Button } from "reactstrap";
 
 export default function CategoryList() {
+  const navigate = useNavigate();
   const [category, setCategory] = useState([]);
 
   const getCategories = () => {
@@ -15,6 +18,7 @@ export default function CategoryList() {
 
   return (
     <>
+    <Button className="btn btn-primary" onClick={() =>navigate("/AddCategory")}>Add Category</Button>
     <div className="container">
       <div>
         {category.map((cat) => (

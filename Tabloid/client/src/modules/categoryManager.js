@@ -25,3 +25,26 @@ export const getAllCategories = () => {
     })
 
 }
+
+export const addCategory = (cat) => {
+    return getToken().then((token)=> {
+        return fetch(baseUrl, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(cat),
+        }).then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            else if (res.status === 401) {
+                throw new Error("Unauthorized");
+            }
+            else {
+                throw new Error("Something happened.");
+            }
+        })
+    })
+}
