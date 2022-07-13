@@ -89,7 +89,7 @@ namespace Tabloid.Repositories
                                        FROM Post p
                                        JOIN UserProfile up ON up.Id = p.UserProfileId
                                        JOIN Category c ON c.Id = p.CategoryId
-                                       WHERE p.IsApproved = 1 AND p.PublishDateTime < GETDATE() AND p.Id = @id";
+                                       WHERE p.Id = @id";
                     DbUtils.AddParameter(cmd, "@id", id);
 
                     using (var reader = cmd.ExecuteReader())

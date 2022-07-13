@@ -6,7 +6,9 @@ export const Post = ({ post }) => {
     return(
         <Card>
             <CardBody>
-                <h3>{post.title}</h3>
+                <Link to={`/posts/${post.id}`}>
+                    <h3>{post.title}</h3>
+                </Link>
                 <h6>By: {post.userProfile.displayName}</h6>
                 <p>Category: {post.category.name}</p>
             </CardBody>
