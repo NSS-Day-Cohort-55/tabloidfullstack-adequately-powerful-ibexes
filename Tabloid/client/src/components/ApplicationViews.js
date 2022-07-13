@@ -3,7 +3,8 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
 import Hello from "./Hello";
-import { PostList } from "./Posts/PostList";
+import { PostList } from "./Posts/PostList.js";
+import { UserPostList } from "./Posts/UserPostList";
 
 export default function ApplicationViews({ isLoggedIn }) {
   return (
@@ -20,6 +21,7 @@ export default function ApplicationViews({ isLoggedIn }) {
         </Route>
         <Route path="posts">
           <Route index element={<PostList/>} />
+          <Route path="user" element={isLoggedIn ? <UserPostList /> : <Navigate to="/login" />} />
         </Route>
       </Routes>
     </main>
