@@ -37,7 +37,7 @@ export const addCategory = (cat) => {
             body: JSON.stringify(cat),
         }).then((res) => {
             if (res.ok) {
-                return res.json();
+                
             }
             else if (res.status === 401) {
                 throw new Error("Unauthorized");

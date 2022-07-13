@@ -42,7 +42,7 @@ namespace Tabloid.Repositories
 
         }
 
-        public void Add(string name)
+        public void Add(Category cat)
         {
             using (var conn = Connection)
             {
@@ -52,7 +52,7 @@ namespace Tabloid.Repositories
                     cmd.CommandText = @"INSERT INTO Category (Name)
                                         OUTPUT INSERTED.ID
                                         VALUES (@name)";
-                    DbUtils.AddParameter(cmd, "@name", name);
+                    DbUtils.AddParameter(cmd, "@name", cat.Name);
                     
 
                     cmd.ExecuteScalar();
