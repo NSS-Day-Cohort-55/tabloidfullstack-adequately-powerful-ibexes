@@ -7,7 +7,6 @@ import Hello from "./Hello";
 import { PostList } from "./Posts/PostList.js";
 import { UserPostList } from "./Posts/UserPostList";
 import TagList from "./tag/TagList";
-import { PostList } from "./Posts/PostList";
 import { PostDetails } from "./Posts/PostDetails";
 
 export default function ApplicationViews({ isLoggedIn }) {
