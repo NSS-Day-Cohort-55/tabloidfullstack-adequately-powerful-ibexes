@@ -40,6 +40,7 @@ export const TagForm = () => {
         </FormGroup>
         <FormGroup>
             <Button onClick={() => handleClickSave()}>Save</Button>
+            <Button onClick={() => navigate("/tags")}>Cancel</Button>
         </FormGroup>
     </Form>
     )
