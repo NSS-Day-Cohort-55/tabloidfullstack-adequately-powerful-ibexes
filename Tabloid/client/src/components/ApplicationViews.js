@@ -8,6 +8,7 @@ import { PostList } from "./Posts/PostList.js";
 import { UserPostList } from "./Posts/UserPostList";
 import TagList from "./tag/TagList";
 import { PostDetails } from "./Posts/PostDetails";
+import { TagForm } from "./tag/TagForm";
 
 export default function ApplicationViews({ isLoggedIn }) {
   return (
@@ -21,7 +22,10 @@ export default function ApplicationViews({ isLoggedIn }) {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="Category" element={<CategoryList/>}/>
-          <Route path="/tagManagement" element={<TagList />} />
+          <Route path="tags">
+            <Route index element={<TagList />} />
+            <Route path="create" element={<TagForm />}/>
+          </Route>
           <Route path="*" element={<p>Whoops, nothing here...</p>} />
         </Route>
         <Route path="posts">
