@@ -10,6 +10,7 @@ import TagList from "./tag/TagList";
 import { PostDetails } from "./Posts/PostDetails";
 import { TagForm } from "./tag/TagForm";
 import CatAddForm from "./category/AddCategoryForm";
+import { TagDelete } from "./tag/TagDelete";
 
 export default function ApplicationViews({ isLoggedIn }) {
   return (
@@ -28,6 +29,7 @@ export default function ApplicationViews({ isLoggedIn }) {
           <Route path="tags">
             <Route index element={<TagList />} />
             <Route path="create" element={<TagForm />}/>
+            <Route path="delete/:id" element={<TagDelete />}/>
           </Route>
 
           <Route path="posts">
