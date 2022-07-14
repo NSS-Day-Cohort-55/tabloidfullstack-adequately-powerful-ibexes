@@ -26,7 +26,7 @@ namespace Tabloid.Repositories
                                         JOIN UserProfile up ON up.Id = c.UserProfileId
                                         JOIN Post p ON p.Id = c.PostId
                                         WHERE c.PostId = @id
-                                        ORDER BY c.CreateDateTime";
+                                        ORDER BY c.CreateDateTime DESC";
                     cmd.Parameters.AddWithValue("@id", id);
                     using (var reader = cmd.ExecuteReader())
                     {
