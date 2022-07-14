@@ -26,7 +26,7 @@ export const getAllCategories = () => {
 }
 
 export const addCategory = (cat) => {
-    return getToken().then((token)=> {
+    return getToken().then((token) => {
         return fetch(baseUrl, {
             method: "POST",
             headers: {
@@ -36,7 +36,7 @@ export const addCategory = (cat) => {
             body: JSON.stringify(cat),
         }).then((res) => {
             if (res.ok) {
-                
+
             }
             else if (res.status === 401) {
                 throw new Error("Unauthorized");
@@ -61,7 +61,7 @@ export const getCategoryById = (id) => {
                 return res.json()
             } else {
                 throw new Error(
-                    "An unknown error occurred while trying to get this category." 
+                    "An unknown error occurred while trying to get this category."
                 )
             }
         })
@@ -80,14 +80,39 @@ export const deleteCategory = (id) => {
         }).then((res) => {
             if (res.ok) {
 
-            } 
+            }
             else if (res.status === 401) {
                 throw new Error("Unauthorized")
-            } 
+            }
             else {
                 throw new Error(
-                    "An unknown error occurred while trying to save a new tag."
+                    "An unknown error occurred while trying to delete category."
                 )
+            }
+        })
+    })
+}
+
+export const updateCategory = (cat) => {
+    return getToken().then((token) => {
+        return fetch(`${baseUrl}/${cat.id}`, {
+            method: "PUT",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(cat)
+        }).then((res) => {
+            if (res.ok) {
+
+            }
+            else if (res.status === 401) {
+                throw new Error("Unauthorized");
+            }
+            else {
+                throw new Error(
+                    "An unknown error occurred while trying to edit category.",
+                );
             }
         })
     })
