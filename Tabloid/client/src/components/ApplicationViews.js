@@ -15,6 +15,8 @@ import { TagDelete } from "./tag/TagDelete";
 import { PostDelete } from "./Posts/PostDelete";
 import { CategoryDelete } from "./category/CategoryDelete";
 import { TagEdit } from "./tag/TagEdit";
+import { CategoryEdit } from "./category/CategoryEdit";
+
 
 export default function ApplicationViews({ isLoggedIn }) {
   return (
@@ -29,9 +31,10 @@ export default function ApplicationViews({ isLoggedIn }) {
           <Route path="register" element={<Register />} />
 
           <Route path="categories" >
-          <Route index element={<CategoryList/>} />
-          <Route path="create" element={<CatAddForm/>}/>
-          <Route path="delete/:id" element={<CategoryDelete/>}/>
+            <Route index element={<CategoryList />} />
+            <Route path="create" element={<CatAddForm />} />
+            <Route path="delete/:id" element={<CategoryDelete />} />
+            <Route path="edit/:id" element={<CategoryEdit />} />
           </Route>
 
           <Route path="tags">
@@ -42,7 +45,7 @@ export default function ApplicationViews({ isLoggedIn }) {
           </Route>
 
           <Route path="posts">
-            <Route index element={<PostList/>} />
+            <Route index element={<PostList />} />
             <Route path=":id" element={<PostDetails />} />
             <Route path="delete/:id" element={<PostDelete />}/>
             <Route path="user" element={isLoggedIn ? <UserPostList /> : <Navigate to="/login" />} />

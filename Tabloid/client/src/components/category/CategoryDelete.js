@@ -13,27 +13,27 @@ export const CategoryDelete = () => {
 
     const getCat = () => {
         getCategoryById(id)
-        .then(cat => setCat(cat))
+            .then(cat => setCat(cat))
     }
 
     const handleClickDelete = () => {
         deleteCategory(cat.id)
-        .then(navigate("/categories"))
+            .then(() => navigate("/categories"))
     }
 
     useEffect(() => {
         getCat()
     }, [])
-    
-    return(
+
+    return (
         <Form>
-        <FormGroup>
-            <Label>Are you sure you'd like to delete <b>{cat.name}</b>?</Label>
-        </FormGroup>
-        <FormGroup>
-            <Button color="danger" onClick={() => handleClickDelete()}>Delete</Button>
-            <Button onClick={() => navigate("/categories")}>Cancel</Button>
-        </FormGroup>
-    </Form>
+            <FormGroup>
+                <Label>Are you sure you'd like to delete <b>{cat.name}</b>?</Label>
+            </FormGroup>
+            <FormGroup>
+                <Button color="danger" onClick={() => handleClickDelete()}>Delete</Button>
+                <Button onClick={() => navigate("/categories")}>Cancel</Button>
+            </FormGroup>
+        </Form>
     )
 }
