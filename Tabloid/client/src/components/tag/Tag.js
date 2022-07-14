@@ -11,6 +11,7 @@ const Tag = ({tag}) => {
                 <p className="tag">
                     {tag.name}
                 </p>
+                <Button color="info" onClick={() => navigate(`/tags/edit/${tag.id}`)}>Edit</Button>
                 <Button color="danger" onClick={() => navigate(`/tags/delete/${tag.id}`)}>Delete</Button>
             </CardBody>
         </Card>
