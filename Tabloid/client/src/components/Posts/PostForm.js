@@ -12,7 +12,7 @@ const [post, setPost] = useState({
   title: '',
   content: '',
   categoryId: '',
-  headerImage: ''
+  imageLocation: ''
   }
 )
 const navigate = useNavigate();
@@ -34,7 +34,7 @@ const handleSaveClick = (evt) => {
     setIsLoading(true)
     post.categoryId = parseInt(post.categoryId)
     addPost(post)
-    .then(() => navigate('/'))
+    .then(() => navigate('/posts/user'))
   }
 }
 
@@ -65,12 +65,12 @@ useEffect(() => {
                   placeholder="Post Content" />
       </FormGroup>
       <FormGroup>
-          <Label for="headerImage">Header Image URL:</Label>
+          <Label for="imageLocation">Header Image URL:</Label>
           <Input type="text" 
-                  name="headerImage" 
-                  id="headerImage"
+                  name="imageLocation" 
+                  id="imageLocation"
                   onChange={handleFieldChange}
-                  value={post.headerImage}
+                  value={post.imageLocation}
                   placeholder="Header Image URL" />
       </FormGroup>
       <FormGroup>

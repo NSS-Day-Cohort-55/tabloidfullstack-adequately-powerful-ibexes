@@ -35,15 +35,10 @@ export default function ApplicationViews({ isLoggedIn }) {
             <Route index element={<PostList/>} />
             <Route path=":id" element={<PostDetails />} />
             <Route path="user" element={isLoggedIn ? <UserPostList /> : <Navigate to="/login" />} />
+            <Route path="create" element={isLoggedIn ? <PostForm /> : <Navigate to="/login" />} />
           </Route>
-          
+
           <Route path="*" element={<p>Whoops, nothing here...</p>} />
-        </Route>
-        <Route path="posts">
-          <Route index element={<PostList/>} />
-          <Route path=":id" element={<PostDetails />} />
-          <Route path="user" element={isLoggedIn ? <UserPostList /> : <Navigate to="/login" />} />
-          <Route path="create" element={isLoggedIn ? <PostForm /> : <Navigate to="/login" />} />
         </Route>
       </Routes>
     </main>
