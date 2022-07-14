@@ -9,6 +9,7 @@ import { UserPostList } from "./Posts/UserPostList";
 import TagList from "./tag/TagList";
 import { PostDetails } from "./Posts/PostDetails";
 import { TagForm } from "./tag/TagForm";
+import { TagManager } from "./Posts/TagManager"
 import CatAddForm from "./category/AddCategoryForm";
 
 export default function ApplicationViews({ isLoggedIn }) {
@@ -22,20 +23,23 @@ export default function ApplicationViews({ isLoggedIn }) {
           />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
-          <Route path="Category" element={<CategoryList/>}/>
-          <Route path="AddCategory" element={<CatAddForm/>}/>
+          <Route path="Category" element={<CategoryList />} />
+          <Route path="AddCategory" element={<CatAddForm />} />
 
           <Route path="tags">
             <Route index element={<TagList />} />
-            <Route path="create" element={<TagForm />}/>
+            <Route path="create" element={<TagForm />} />
           </Route>
 
           <Route path="posts">
-            <Route index element={<PostList/>} />
-            <Route path=":id" element={<PostDetails />} />
+            <Route index element={<PostList />} />
+            <Route path=":id">
+              <Route index element={<PostDetails />} />
+              <Route path="tag-manager" element={<TagManager />} />
+            </Route>
             <Route path="user" element={isLoggedIn ? <UserPostList /> : <Navigate to="/login" />} />
           </Route>
-          
+
           <Route path="*" element={<p>Whoops, nothing here...</p>} />
         </Route>
       </Routes>
