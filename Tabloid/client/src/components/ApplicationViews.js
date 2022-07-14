@@ -12,6 +12,7 @@ import { PostForm } from "./Posts/PostForm";
 import { TagForm } from "./tag/TagForm";
 import CatAddForm from "./category/AddCategoryForm";
 import { TagDelete } from "./tag/TagDelete";
+import { CategoryDelete } from "./category/CategoryDelete";
 import { TagEdit } from "./tag/TagEdit";
 
 export default function ApplicationViews({ isLoggedIn }) {
@@ -25,8 +26,12 @@ export default function ApplicationViews({ isLoggedIn }) {
           />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
-          <Route path="Category" element={<CategoryList/>}/>
-          <Route path="AddCategory" element={<CatAddForm/>}/>
+
+          <Route path="categories" >
+          <Route index element={<CategoryList/>} />
+          <Route path="create" element={<CatAddForm/>}/>
+          <Route path="delete/:id" element={<CategoryDelete/>}/>
+          </Route>
 
           <Route path="tags">
             <Route index element={<TagList />} />
