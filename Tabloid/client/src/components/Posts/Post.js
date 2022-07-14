@@ -1,8 +1,12 @@
 import React from "react";
-import { Card, CardBody } from "reactstrap";
+import { Button, Card, CardBody } from "reactstrap";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 export const Post = ({ post }) => {
+
+    const navigate = useNavigate();
+    
     return(
         <Card>
             <CardBody>
@@ -11,7 +15,12 @@ export const Post = ({ post }) => {
                 </Link>
                 <h6>By: {post.userProfile.displayName}</h6>
                 <p>Category: {post.category.name}</p>
+                <Button color="danger" onClick={() => navigate(`/posts/delete/${post.id}`)}>
+                    Delete
+                </Button>
             </CardBody>
         </Card>
     )
 }
+
+export default Post;
