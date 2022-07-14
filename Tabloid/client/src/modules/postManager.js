@@ -1,5 +1,3 @@
-import firebase from "firebase/app";
-import "firebase/auth";
 import { getToken } from "./authManager";
 
 const baseUrl = "/api/Post"
@@ -81,4 +79,26 @@ export const addPost = (post) => {
         });
     });
 };
+
+export const deletePost = (id) => {
+    return getToken().then((token) => {
+        return fetch(`${baseUrl}/${id}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify(id)
+        }).then((res) => {
+            if (res.ok) {
+            } else if (res.status === 401) {
+                throw new Error("Unauthorized")
+            } else {
+                throw new Error(
+                    "An unknown error occured while trying to save a new tag."
+                )
+            }
+        })
+    })
+}
+
 

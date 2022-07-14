@@ -12,6 +12,7 @@ import { PostForm } from "./Posts/PostForm";
 import { TagForm } from "./tag/TagForm";
 import CatAddForm from "./category/AddCategoryForm";
 import { TagDelete } from "./tag/TagDelete";
+import { PostDelete } from "./Posts/PostDelete";
 import { CategoryDelete } from "./category/CategoryDelete";
 import { TagEdit } from "./tag/TagEdit";
 import { CategoryEdit } from "./category/CategoryEdit";
@@ -46,6 +47,7 @@ export default function ApplicationViews({ isLoggedIn }) {
           <Route path="posts">
             <Route index element={<PostList />} />
             <Route path=":id" element={<PostDetails />} />
+            <Route path="delete/:id" element={<PostDelete />}/>
             <Route path="user" element={isLoggedIn ? <UserPostList /> : <Navigate to="/login" />} />
             <Route path="create" element={isLoggedIn ? <PostForm /> : <Navigate to="/login" />} />
           </Route>
