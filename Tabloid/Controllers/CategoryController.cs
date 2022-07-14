@@ -58,6 +58,18 @@ namespace Tabloid.Controllers
             return NoContent();
         }
 
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Category cat)
+        {
+            if (id != cat.Id)
+            {
+                return BadRequest();
+            }
+
+            _catRepository.UpdateCategory(cat);
+            return NoContent();
+        }
+
 
     }
 }

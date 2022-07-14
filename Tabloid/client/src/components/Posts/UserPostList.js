@@ -4,9 +4,11 @@ import { Post } from "./Post";
 import { Button } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 
+
 export const UserPostList = () => {
 const [posts, setPosts] = useState([])
 const navigate = useNavigate();
+
 
 
 useEffect(() => {
