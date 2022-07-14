@@ -10,7 +10,7 @@ export default function CatAddForm() {
   const submitForm = (e) => {
     e.preventDefault();
     addCategory({ name: category })
-      .then(() => navigate("/Category"))
+      .then(() => navigate("/categories"))
       .catch((err) => alert(`An error ocurred: ${err.message}`));
   };
 

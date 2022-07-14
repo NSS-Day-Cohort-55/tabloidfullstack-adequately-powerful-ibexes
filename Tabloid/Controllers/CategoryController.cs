@@ -40,7 +40,24 @@ namespace Tabloid.Controllers
             
         }
 
-       
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            Category cat = _catRepository.GetCategoryById(id);
+            if (cat == null)
+            {
+                return NotFound();
+            }
+            return Ok(cat);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _catRepository.Delete(id);
+            return NoContent();
+        }
+
 
     }
 }

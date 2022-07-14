@@ -18,7 +18,7 @@ export default function CategoryList() {
 
   return (
     <>
-    <Button className="btn btn-primary" onClick={() =>navigate("/AddCategory")}>Add Category</Button>
+    <Button className="btn btn-primary" onClick={() =>navigate("/categories/create")}>Add Category</Button>
     <div className="container">
       <div>
         {category.map((cat) => (
