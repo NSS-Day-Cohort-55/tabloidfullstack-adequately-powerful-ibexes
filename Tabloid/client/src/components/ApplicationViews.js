@@ -45,6 +45,7 @@ export default function ApplicationViews({ isLoggedIn }) {
             <Route path=":id" element={<PostDetails />} />
             <Route path="user" element={isLoggedIn ? <UserPostList /> : <Navigate to="/login" />} />
             <Route path="create" element={isLoggedIn ? <PostForm /> : <Navigate to="/login" />} />
+            <Route path="comments/:id" element={<p>the stuff will go here</p>} />
           </Route>
 
           <Route path="*" element={<p>Whoops, nothing here...</p>} />
