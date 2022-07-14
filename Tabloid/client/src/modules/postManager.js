@@ -1,5 +1,3 @@
-import firebase from "firebase/app";
-import "firebase/auth";
 import { getToken } from "./authManager";
 
 const baseUrl = "/api/Post"
@@ -102,4 +100,5 @@ export const deletePost = (id) => {
         })
     })
 }
+
 

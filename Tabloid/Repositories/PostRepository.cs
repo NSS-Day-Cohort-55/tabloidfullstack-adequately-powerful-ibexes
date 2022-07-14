@@ -63,7 +63,7 @@ namespace Tabloid.Repositories
                 {
                     cmd.CommandText = @"SELECT p.Id, p.Title, p.Content, p.ImageLocation, p.CreateDateTime, p.PublishDateTime, p.IsApproved, p.CategoryId, p.UserProfileId,
 		                                       
-                                               up.DisplayName, up.FirstName, up.LastName,
+                                               up.DisplayName, up.FirstName, up.LastName, up.FirebaseUserId,
 
                                                c.Name AS CategoryName
 
@@ -90,6 +90,7 @@ namespace Tabloid.Repositories
                                 UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
                                 UserProfile = new UserProfile()
                                 {
+                                    FirebaseUserId = DbUtils.GetString(reader, "FirebaseUserId"),
                                     Id = DbUtils.GetInt(reader, "UserProfileId"),
                                     DisplayName = DbUtils.GetString(reader, "DisplayName"),
                                     FirstName = DbUtils.GetString(reader, "FirstName"),
@@ -116,7 +117,7 @@ namespace Tabloid.Repositories
                 {
                     cmd.CommandText = @"SELECT p.Id, p.Title, p.Content, p.ImageLocation, p.CreateDateTime, p.PublishDateTime, p.IsApproved, p.CategoryId, p.UserProfileId,
 		                                       
-                                               up.DisplayName, up.FirstName, up.LastName,
+                                               up.DisplayName, up.FirstName, up.LastName, up.FirebaseUserId,
 
                                                c.Name AS CategoryName
 
@@ -144,6 +145,7 @@ namespace Tabloid.Repositories
                                 UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
                                 UserProfile = new UserProfile()
                                 {
+                                    FirebaseUserId = DbUtils.GetString(reader, "FirebaseUserId"),
                                     Id = DbUtils.GetInt(reader, "UserProfileId"),
                                     DisplayName = DbUtils.GetString(reader, "DisplayName"),
                                     FirstName = DbUtils.GetString(reader, "FirstName"),
@@ -172,7 +174,7 @@ namespace Tabloid.Repositories
                 {
                     cmd.CommandText = @"SELECT p.Id, p.Title, p.Content, p.ImageLocation, p.CreateDateTime, p.PublishDateTime, p.IsApproved, p.CategoryId, p.UserProfileId,
 		                                       
-                                               up.DisplayName, up.FirstName, up.LastName,
+                                               up.DisplayName, up.FirstName, up.LastName, up.FirebaseUserId,
 
                                                c.Name AS CategoryName
 
@@ -200,6 +202,7 @@ namespace Tabloid.Repositories
                                 UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
                                 UserProfile = new UserProfile()
                                 {
+                                    FirebaseUserId = DbUtils.GetString(reader, "FirebaseUserId"),
                                     Id = DbUtils.GetInt(reader, "UserProfileId"),
                                     DisplayName = DbUtils.GetString(reader, "DisplayName"),
                                     FirstName = DbUtils.GetString(reader, "FirstName"),
