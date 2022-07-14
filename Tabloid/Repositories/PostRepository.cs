@@ -8,7 +8,7 @@ namespace Tabloid.Repositories
     public class PostRepository: BaseRepository, IPostRepository
     {
         public PostRepository(IConfiguration configuration) : base(configuration) { }
-            public void Add(Post post)
+        public void Add(Post post)
             {
                 using (var conn = Connection)
                 {
@@ -95,6 +95,7 @@ namespace Tabloid.Repositories
                 }
             }
         }
+
         public List<Post> GetAllPostsByUserId(int id)
         {
             using (var conn = Connection)

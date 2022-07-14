@@ -18,11 +18,15 @@ namespace Tabloid.Repositories
                 {
                     cmd.CommandText = @"SELECT c.Id, c.PostId, c.UserProfileId, c.Subject, c.Content, c.CreateDateTime,
                                                
-                                               up.DisplayName
+                                               up.DisplayName,
+
+                                               p.title
                                         
                                         FROM Comment c
                                         JOIN UserProfile up ON up.Id = c.UserProfileId
-                                        WHERE c.PostId = @id";
+                                        JOIN Post p ON p.Id = c.PostId
+                                        WHERE c.PostId = @id
+                                        ORDER BY c.CreateDateTime";
                     cmd.Parameters.AddWithValue("@id", id);
                     using (var reader = cmd.ExecuteReader())
                     {
@@ -41,6 +45,10 @@ namespace Tabloid.Repositories
                                 {
                                     Id = DbUtils.GetInt(reader, "UserProfileId"),
                                     DisplayName = DbUtils.GetString(reader, "DisplayName")
+                                },
+                                Post = new Post()
+                                {
+                                    Title = DbUtils.GetString(reader, "title")
                                 }
                             });
                         }
