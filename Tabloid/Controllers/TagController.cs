@@ -24,7 +24,7 @@ namespace Tabloid.Controllers
             return Ok(_tagRepo.GetAllTags());
         }
 
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             var tag = _tagRepo.GetTagById(id);
