@@ -15,10 +15,10 @@ namespace Tabloid.Controllers
         private readonly IPostRepository _postRepository;
         private readonly IUserProfileRepository _userProfileRepository;
 
-        public PostController(IPostRepository postRepository, IUserProfileRepository userProfileRepository)
+        public PostController(IPostRepository postRepository, IUserProfileRepository userProfileRepository, ITagRepository tagRepository)
         {
             _postRepository = postRepository;
-            _userProfileRepository = userProfileRepository; 
+            _userProfileRepository = userProfileRepository;
         }
 
         [HttpGet]
@@ -43,6 +43,13 @@ namespace Tabloid.Controllers
         {
             UserProfile currentUser = GetCurrentUserProfile();
             return Ok(_postRepository.GetAllPostsByUserId(currentUser.Id));
+        }
+
+        [HttpPost("tag")]
+        public IActionResult AddTagToPost(int postId, int tagId)
+        {
+            _postRepository.AddPostTag(postId, tagId);
+            return NoContent();
         }
         private UserProfile GetCurrentUserProfile()
         {

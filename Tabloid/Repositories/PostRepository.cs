@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using Tabloid.Models;
 using Tabloid.Utils;
@@ -12,6 +13,29 @@ namespace Tabloid.Repositories
         public void Add(Post post)
         {
             throw new System.NotImplementedException();
+        }
+
+        public void AddPostTag(int postId, int tagId)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"INSERT INTO PostTag
+                                        SELECT Post.Id AS PostId, Tag.Id AS TagId
+                                        FROM Post, Tag
+                                        WHERE Post.Id = @postId AND Tag.Id = @tagId
+	                                        AND NOT EXISTS ( 
+		                                        SELECT 1
+		                                        FROM PostTag
+		                                        WHERE Post.Id = PostTag.PostId AND Tag.Id = PostTag.TagId
+		                                        )";
+                    cmd.Parameters.AddWithValue("@postId", postId);
+                    cmd.Parameters.AddWithValue("@tagId", tagId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
         public void Delete(int id)

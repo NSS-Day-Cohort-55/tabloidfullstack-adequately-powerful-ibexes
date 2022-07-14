@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Tabloid.Models
 {
@@ -15,5 +16,6 @@ namespace Tabloid.Models
         public int UserProfileId { get; set; }
         public UserProfile UserProfile { get; set; }
         public Category Category { get; set; }
+        public List<Tag> Tag { get; set; }
     }
 }
