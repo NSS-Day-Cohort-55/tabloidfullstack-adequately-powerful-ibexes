@@ -44,10 +44,11 @@ export const getPostById = (id) => {
 
 export const getAllPostsByUser = () => {
     return getToken().then((token) => {
-        return fetch(`${baseUrl}/user/`, {
-            method: "GET",
+        return fetch(`${baseUrl}/create`, {
+            method: "POST",
             headers: {
                 Authorization: `Bearer ${token}`,
+
             },
         }).then((res) => {
             if (res.ok) {
@@ -60,3 +61,25 @@ export const getAllPostsByUser = () => {
         })
     })
 }
+
+export const addPost = (post) => {
+    return getToken().then((token) => {
+        return fetch(`${baseUrl}/create`, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(post),
+        }).then((res) => {
+            if (res.ok) {
+                return res.json()
+            } else {
+                throw new Error(
+                    "An unknown error occurred while trying to save your post.",
+                );
+            }
+        });
+    });
+};
+

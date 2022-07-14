@@ -8,6 +8,7 @@ import { PostList } from "./Posts/PostList.js";
 import { UserPostList } from "./Posts/UserPostList";
 import TagList from "./tag/TagList";
 import { PostDetails } from "./Posts/PostDetails";
+import { PostForm } from "./Posts/PostForm";
 
 export default function ApplicationViews({ isLoggedIn }) {
   return (
@@ -28,6 +29,7 @@ export default function ApplicationViews({ isLoggedIn }) {
           <Route index element={<PostList/>} />
           <Route path=":id" element={<PostDetails />} />
           <Route path="user" element={isLoggedIn ? <UserPostList /> : <Navigate to="/login" />} />
+          <Route path="create" element={isLoggedIn ? <PostForm /> : <Navigate to="/login" />} />
         </Route>
       </Routes>
     </main>

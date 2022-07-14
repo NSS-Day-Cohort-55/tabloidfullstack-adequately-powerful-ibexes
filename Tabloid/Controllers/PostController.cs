@@ -45,8 +45,8 @@ namespace Tabloid.Controllers
             UserProfile currentUser = GetCurrentUserProfile();
             post.IsApproved = true;
             post.UserProfileId = currentUser.Id;
-            post.CreateDateTime = new DateTime();
-            post.PublishDateTime = new DateTime();
+            post.CreateDateTime = DateTime.Now;
+            post.PublishDateTime = DateTime.Now;
             _postRepository.Add(post);
             return CreatedAtAction(nameof(Get), new { id = post.Id }, post);
         }
