@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using Tabloid.Models;
 using Tabloid.Utils;
@@ -57,6 +58,39 @@ namespace Tabloid.Repositories
 
                     cmd.ExecuteScalar();
                 }
+            }
+        }
+
+        public Category GetCategoryById(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                    SELECT Id, Name
+                    FROM Category
+                    WHERE Id = @Id";
+
+                    DbUtils.AddParameter(cmd, "@Id", id);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        Category cat = null;
+                        if (reader.Read())
+                        {
+                            cat = new Category()
+                            {
+                                Id = id,
+                                Name = DbUtils.GetString(reader, "Name"),
+                            };
+                        }
+
+                        return cat;
+                    }
+                }
+
             }
         }
 
