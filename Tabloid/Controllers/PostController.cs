@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Tabloid.Repositories;
 using Tabloid.Models;
+using System;
 
 namespace Tabloid.Controllers
 {
@@ -36,6 +37,18 @@ namespace Tabloid.Controllers
                 return NotFound();
             }
             return Ok(post);
+        }
+
+        [HttpPost("create")]
+        public IActionResult Post(Post post)
+        {
+            UserProfile currentUser = GetCurrentUserProfile();
+            post.IsApproved = true;
+            post.UserProfileId = currentUser.Id;
+            post.CreateDateTime = DateTime.Now;
+            post.PublishDateTime = DateTime.Now;
+            _postRepository.Add(post);
+            return CreatedAtAction(nameof(Get), new { id = post.Id }, post);
         }
         
         [HttpGet("user")]
