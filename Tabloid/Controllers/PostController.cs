@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Tabloid.Repositories;
 using Tabloid.Models;
+using System.Diagnostics;
 
 namespace Tabloid.Controllers
 {
@@ -48,6 +49,11 @@ namespace Tabloid.Controllers
         [HttpPost("{postId}/{tagId}")]
         public IActionResult AddTagToPost(int postId, int tagId)
         {
+            Post post = _postRepository.GetById(postId);
+            if (post.UserProfileId != GetCurrentUserProfile().Id)
+            {
+                return Unauthorized();
+            }
             _postRepository.AddPostTag(postId, tagId);
             return NoContent();
         }

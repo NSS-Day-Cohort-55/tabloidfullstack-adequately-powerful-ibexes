@@ -41,7 +41,7 @@ export const PostDetails = () => {
                 </div>
                 <ul>
                     {post.tags.map(tag => (
-                        <li>{tag.name}</li>
+                        <li key={tag.id}>{tag.name}</li>
                     ))}
                 </ul>
                 {uId == post.userProfile.firebaseUserId && <Link to={`/posts/${post.id}/tag-manager`}>
