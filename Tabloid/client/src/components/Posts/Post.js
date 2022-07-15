@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Card, CardBody } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { AddTagToPost } from "./TagManager";
 import firebase from "firebase/app";
 import "firebase/auth";
 
