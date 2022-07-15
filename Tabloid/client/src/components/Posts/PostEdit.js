@@ -40,7 +40,6 @@ export const PostEdit = () => {
         if (post.title === "" || post.content === "" || post.imageLocation ==="" || post.publishDateTime === "" || post.categoryId === "") {
             window.alert("Please fill out all fields... jabroni")
         } else {
-            console.log(post);
             const newPost = {...post};
             delete newPost.userProfile;
             updatePost(newPost)

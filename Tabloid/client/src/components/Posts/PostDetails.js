@@ -26,7 +26,6 @@ export const PostDetails = () => {
         const subscription = {
             providerUserProfileId: post.userProfileId
         }
-        console.log(post.userProfileId)
         addSubscription(subscription)
         .then(window.alert("You've successfully subscribed to this author ya JABRONI!"))
     }
@@ -35,7 +34,6 @@ export const PostDetails = () => {
         getPostById(id)
         .then(post => {
             setPost(post);
-            console.log();
         })
     }
     

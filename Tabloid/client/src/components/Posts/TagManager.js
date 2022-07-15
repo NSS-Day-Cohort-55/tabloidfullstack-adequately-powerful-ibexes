@@ -19,8 +19,6 @@ export const TagManager = () => {
 
     function addTag(e) {
         e.preventDefault();
-        console.log(userId)
-        console.log(selectedValue, id);
         addTagToPost(id, selectedValue)
             .then(() => {
                 navigate(`/posts/${id}/`)
