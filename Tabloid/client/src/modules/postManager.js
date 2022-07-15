@@ -1,5 +1,3 @@
-import firebase from "firebase/app";
-import "firebase/auth";
 import { getToken } from "./authManager";
 
 const baseUrl = "/api/Post"
@@ -44,7 +42,7 @@ export const getPostById = (id) => {
 
 export const getAllPostsByUser = () => {
     return getToken().then((token) => {
-        return fetch(`${baseUrl}/user/`, {
+        return fetch(`${baseUrl}/user`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -61,6 +59,7 @@ export const getAllPostsByUser = () => {
     })
 }
 
+<<<<<<< HEAD
 export const addTagToPost = (postId, tagId) => {
     return getToken().then((token) => {
         return fetch(`${baseUrl}/${postId}/${tagId}`, {
@@ -81,3 +80,48 @@ export const addTagToPost = (postId, tagId) => {
         })
     })
 }
+=======
+export const addPost = (post) => {
+    return getToken().then((token) => {
+        return fetch(`${baseUrl}/create`, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(post),
+        }).then((res) => {
+            if (res.ok) {
+                return res.json()
+            } else {
+                throw new Error(
+                    "An unknown error occurred while trying to save your post.",
+                );
+            }
+        });
+    });
+};
+
+export const deletePost = (id) => {
+    return getToken().then((token) => {
+        return fetch(`${baseUrl}/${id}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify(id)
+        }).then((res) => {
+            if (res.ok) {
+            } else if (res.status === 401) {
+                throw new Error("Unauthorized")
+            } else {
+                throw new Error(
+                    "An unknown error occured while trying to save a new tag."
+                )
+            }
+        })
+    })
+}
+
+
+>>>>>>> main

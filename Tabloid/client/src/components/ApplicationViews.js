@@ -8,9 +8,18 @@ import { PostList } from "./Posts/PostList.js";
 import { UserPostList } from "./Posts/UserPostList";
 import TagList from "./tag/TagList";
 import { PostDetails } from "./Posts/PostDetails";
+import { PostForm } from "./Posts/PostForm";
 import { TagForm } from "./tag/TagForm";
 import { TagManager } from "./Posts/TagManager"
 import CatAddForm from "./category/AddCategoryForm";
+import { TagDelete } from "./tag/TagDelete";
+import { PostDelete } from "./Posts/PostDelete";
+import { CategoryDelete } from "./category/CategoryDelete";
+import { TagEdit } from "./tag/TagEdit";
+import { CommentList } from "./comment/CommentList";
+import { CategoryEdit } from "./category/CategoryEdit";
+import UserProfileList from "./userProfile/UserProfileList"
+
 
 export default function ApplicationViews({ isLoggedIn }) {
   return (
@@ -23,23 +32,52 @@ export default function ApplicationViews({ isLoggedIn }) {
           />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+<<<<<<< HEAD
           <Route path="Category" element={<CategoryList />} />
           <Route path="AddCategory" element={<CatAddForm />} />
+=======
+
+          <Route path="categories" >
+            <Route index element={<CategoryList />} />
+            <Route path="create" element={<CatAddForm />} />
+            <Route path="delete/:id" element={<CategoryDelete />} />
+            <Route path="edit/:id" element={<CategoryEdit />} />
+          </Route>
+>>>>>>> main
 
           <Route path="tags">
             <Route index element={<TagList />} />
             <Route path="create" element={<TagForm />} />
+<<<<<<< HEAD
+=======
+            <Route path="delete/:id" element={<TagDelete />} />
+            <Route path="edit/:id" element={<TagEdit />} />
+>>>>>>> main
           </Route>
 
           <Route path="posts">
             <Route index element={<PostList />} />
+<<<<<<< HEAD
             <Route path=":id">
               <Route index element={<PostDetails />} />
               <Route path="tag-manager" element={<TagManager />} />
             </Route>
+=======
+            <Route path=":id" element={<PostDetails />} />
+            <Route path="delete/:id" element={<PostDelete />}/>
+>>>>>>> main
             <Route path="user" element={isLoggedIn ? <UserPostList /> : <Navigate to="/login" />} />
+            <Route path="create" element={isLoggedIn ? <PostForm /> : <Navigate to="/login" />} />
+            <Route path=":id/comments" element={<CommentList />} />
           </Route>
 
+<<<<<<< HEAD
+=======
+          <Route path="users">
+            <Route index element={<UserProfileList/>}/>
+          </Route>
+
+>>>>>>> main
           <Route path="*" element={<p>Whoops, nothing here...</p>} />
         </Route>
       </Routes>

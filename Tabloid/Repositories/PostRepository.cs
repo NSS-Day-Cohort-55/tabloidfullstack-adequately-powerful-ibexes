@@ -9,11 +9,34 @@ namespace Tabloid.Repositories
     public class PostRepository: BaseRepository, IPostRepository
     {
         public PostRepository(IConfiguration configuration) : base(configuration) { }
-
         public void Add(Post post)
-        {
-            throw new System.NotImplementedException();
-        }
+            {
+                using (var conn = Connection)
+                {
+                    conn.Open();
+                    using (var cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = @"
+                                    INSERT INTO Post (
+                                        Title, Content, ImageLocation, CreateDateTime, PublishDateTime,
+                                        IsApproved, CategoryId, UserProfileId)
+                                    OUTPUT INSERTED.ID
+                                    VALUES (
+                                        @Title, @Content, @ImageLocation, @CreateDateTime, @PublishDateTime,
+                                        @IsApproved, @CategoryId, @UserProfileId )";
+                        DbUtils.AddParameter(cmd, "@Title", post.Title);
+                        DbUtils.AddParameter(cmd, "@Content", post.Content);
+                        DbUtils.AddParameter(cmd, "@ImageLocation", post.ImageLocation);
+                        DbUtils.AddParameter(cmd, "@CreateDateTime", post.CreateDateTime);
+                        DbUtils.AddParameter(cmd, "@PublishDateTime", post.PublishDateTime);
+                        DbUtils.AddParameter(cmd, "@IsApproved", post.IsApproved);
+                        DbUtils.AddParameter(cmd, "@CategoryId", post.CategoryId);
+                        DbUtils.AddParameter(cmd, "@UserProfileId", post.UserProfileId);
+
+                        post.Id = (int)cmd.ExecuteScalar();
+                    }
+                }
+            }
 
         public void AddPostTag(int postId, int tagId)
         {
@@ -40,7 +63,19 @@ namespace Tabloid.Repositories
 
         public void Delete(int id)
         {
-            throw new System.NotImplementedException();
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        DELETE FROM Post
+                        WHERE Id = @Id";
+
+                    DbUtils.AddParameter(cmd, "@id", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
         public List<Post> GetAll()
@@ -52,7 +87,7 @@ namespace Tabloid.Repositories
                 {
                     cmd.CommandText = @"SELECT p.Id, p.Title, p.Content, p.ImageLocation, p.CreateDateTime, p.PublishDateTime, p.IsApproved, p.CategoryId, p.UserProfileId,
 		                                       
-                                               up.DisplayName, up.FirstName, up.LastName,
+                                               up.DisplayName, up.FirstName, up.LastName, up.FirebaseUserId,
 
                                                c.Name AS CategoryName
 
@@ -79,6 +114,7 @@ namespace Tabloid.Repositories
                                 UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
                                 UserProfile = new UserProfile()
                                 {
+                                    FirebaseUserId = DbUtils.GetString(reader, "FirebaseUserId"),
                                     Id = DbUtils.GetInt(reader, "UserProfileId"),
                                     DisplayName = DbUtils.GetString(reader, "DisplayName"),
                                     FirstName = DbUtils.GetString(reader, "FirstName"),
@@ -96,6 +132,7 @@ namespace Tabloid.Repositories
                 }
             }
         }
+
         public List<Post> GetAllPostsByUserId(int id)
         {
             using (var conn = Connection)
@@ -105,7 +142,7 @@ namespace Tabloid.Repositories
                 {
                     cmd.CommandText = @"SELECT p.Id, p.Title, p.Content, p.ImageLocation, p.CreateDateTime, p.PublishDateTime, p.IsApproved, p.CategoryId, p.UserProfileId,
 		                                       
-                                               up.DisplayName, up.FirstName, up.LastName,
+                                               up.DisplayName, up.FirstName, up.LastName, up.FirebaseUserId,
 
                                                c.Name AS CategoryName
 
@@ -133,6 +170,7 @@ namespace Tabloid.Repositories
                                 UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
                                 UserProfile = new UserProfile()
                                 {
+                                    FirebaseUserId = DbUtils.GetString(reader, "FirebaseUserId"),
                                     Id = DbUtils.GetInt(reader, "UserProfileId"),
                                     DisplayName = DbUtils.GetString(reader, "DisplayName"),
                                     FirstName = DbUtils.GetString(reader, "FirstName"),

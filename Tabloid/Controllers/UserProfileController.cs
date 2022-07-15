@@ -33,6 +33,27 @@ namespace Tabloid.Controllers
             return Ok();
         }
 
+        [HttpGet]
+        public ActionResult Get()
+        {
+            return Ok(_userProfileRepository.GetAllUsers());
+        }
+
+        //[HttpGet("LoggedInUserCheck")]
+        //public IActionResult CurrentUserCheck(string firebaseUserId)
+        //{
+        //    var currentUserProfie = _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
+        //    UserProfile userProfile = GetCurrentUserProfile();
+        //    if (currentUserProfie.Id == userProfile.Id)
+        //    {
+        //        return Ok();
+        //    }
+        //    else
+        //    {
+        //        throw new Exception("User not a match");
+        //    }
+        //}
+
         [HttpPost]
         public IActionResult Post(UserProfile userProfile)
         {
@@ -44,10 +65,10 @@ namespace Tabloid.Controllers
                 new { firebaseUserId = userProfile.FirebaseUserId },
                 userProfile);
         }
-        private int GetCurrentUserProfileId()
+        private UserProfile GetCurrentUserProfile()
         {
-            string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            return int.Parse(id);
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
         }
     }
 }

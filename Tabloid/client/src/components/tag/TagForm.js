@@ -27,20 +27,20 @@ export const TagForm = () => {
     }
 
     return(
-    <Form>
-        <FormGroup>
-            <Label for="name">New Tag</Label>
-            <Input
-                id="name"
-                type="text"
-                onChange={handleInputChange}
-                value={tag.name}
-            />
-        </FormGroup>
-        <FormGroup>
-            <Button onClick={() => handleClickSave()}>Save</Button>
-            <Button onClick={() => navigate("/tags")}>Cancel</Button>
-        </FormGroup>
-    </Form>
+        <Form>
+            <FormGroup>
+                <Label for="name">New Tag</Label>
+                <Input
+                    id="name"
+                    type="text"
+                    onChange={handleInputChange}
+                    value={tag.name}
+                />
+            </FormGroup>
+            <FormGroup>
+                <Button onClick={() => handleClickSave()}>Save</Button>
+                <Button onClick={() => navigate("/tags")}>Cancel</Button>
+            </FormGroup>
+        </Form>
     )
 }

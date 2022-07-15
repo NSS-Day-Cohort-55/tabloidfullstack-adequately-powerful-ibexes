@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Tabloid.Repositories;
 using Tabloid.Models;
-using System.Diagnostics;
+using System;
 
 namespace Tabloid.Controllers
 {
@@ -38,6 +38,18 @@ namespace Tabloid.Controllers
             }
             return Ok(post);
         }
+
+        [HttpPost("create")]
+        public IActionResult Post(Post post)
+        {
+            UserProfile currentUser = GetCurrentUserProfile();
+            post.IsApproved = true;
+            post.UserProfileId = currentUser.Id;
+            post.CreateDateTime = DateTime.Now;
+            post.PublishDateTime = DateTime.Now;
+            _postRepository.Add(post);
+            return CreatedAtAction(nameof(Get), new { id = post.Id }, post);
+        }
         
         [HttpGet("user")]
         public IActionResult GetAllByUserId()
@@ -61,6 +73,13 @@ namespace Tabloid.Controllers
         {
             var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _postRepository.Delete(id);
+            return NoContent();
         }
     }
 }

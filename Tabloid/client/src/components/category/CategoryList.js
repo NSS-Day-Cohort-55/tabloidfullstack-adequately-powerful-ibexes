@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { getAllCategories } from "../../modules/categoryManager";
 import Category from "./Category"
 import { useNavigate } from "react-router-dom";
@@ -12,20 +12,20 @@ export default function CategoryList() {
     getAllCategories().then(cat => setCategory(cat));
   }
 
-  useEffect(()=> {
+  useEffect(() => {
     getCategories();
   }, [])
 
   return (
     <>
-    <Button className="btn btn-primary" onClick={() =>navigate("/AddCategory")}>Add Category</Button>
-    <div className="container">
-      <div>
-        {category.map((cat) => (
-          <Category cat={cat} key={cat.id}/>
-        ))}
+      <Button className="btn btn-primary" onClick={() => navigate("/categories/create")}>Add Category</Button>
+      <div className="container">
+        <div>
+          {category.map((cat) => (
+            <Category cat={cat} key={cat.id} />
+          ))}
+        </div>
       </div>
-    </div>
     </>
   );
 }

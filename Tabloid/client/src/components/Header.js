@@ -24,14 +24,17 @@ export default function Header({ isLoggedIn }) {
           <Nav className="mr-auto" navbar>
             { /* When isLoggedIn === true, we will render the Home link */}
             {isLoggedIn &&
-            <>
-              <NavItem>
-                <NavLink tag={RRNavLink} to="/">Home</NavLink>
-              </NavItem>
-              <NavItem>
-              <NavLink tag={RRNavLink} to="/Category">Categories</NavLink>
-            </NavItem>
-            </>
+              <>
+                <NavItem>
+                  <NavLink tag={RRNavLink} to="/">Home</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink tag={RRNavLink} to="/categories">Categories</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink tag={RRNavLink} to="/users">UserProfiles</NavLink>
+                </NavItem>
+              </>
             }
           </Nav>
           <Nav className="mr-auto" navbar>
@@ -54,8 +57,8 @@ export default function Header({ isLoggedIn }) {
             {isLoggedIn &&
               <>
                 <NavItem>
-                <NavLink tag={RRNavLink} to="/tags">Tag Management</NavLink>
-              </NavItem>
+                  <NavLink tag={RRNavLink} to="/tags">Tag Management</NavLink>
+                </NavItem>
                 <NavItem>
                   <a aria-current="page" className="nav-link"
                     style={{ cursor: "pointer" }} onClick={logout}>Logout</a>
