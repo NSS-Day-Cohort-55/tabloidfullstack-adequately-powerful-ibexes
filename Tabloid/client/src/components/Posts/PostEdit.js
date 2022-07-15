@@ -44,7 +44,7 @@ export const PostEdit = () => {
             const newPost = {...post};
             delete newPost.userProfile;
             updatePost(newPost)
-            .then(navigate("/posts"))
+            .then(navigate(`/posts/${post.id}`))
         }
     };
 
