@@ -29,7 +29,7 @@ export const CommentForm = () => {
             delete newComment.post
             newComment.postId = id
             addComment(newComment)
-            .then(navigate(`/posts/${id}/comments`))
+            .then(() => navigate(`/posts/${id}/comments`))
         }
     }
 
