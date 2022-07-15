@@ -39,6 +39,12 @@ namespace Tabloid.Controllers
             return Ok(_userProfileRepository.GetAllUsers());
         }
 
+        [HttpGet("Details/{id}")]
+        public IActionResult GetUserProfileById(int id)
+        {
+            return Ok(_userProfileRepository.GetByUserId(id));
+        }
+
         //[HttpGet("LoggedInUserCheck")]
         //public IActionResult CurrentUserCheck(string firebaseUserId)
         //{
