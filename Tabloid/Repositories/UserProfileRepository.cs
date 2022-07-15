@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
 using Tabloid.Models;
 using Tabloid.Utils;
 
@@ -79,6 +80,44 @@ namespace Tabloid.Repositories
                     userProfile.Id = (int)cmd.ExecuteScalar();
                 }
             }
+        }
+
+        public List<UserProfile> GetAllUsers()
+        {
+            List<UserProfile> users = new List<UserProfile>();
+
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "Select  up.Id, up.FirstName, up.LastName, up.DisplayName, ut.Name From UserProfile up Left Join UserType ut On up.UserTypeId = ut.Id Order By DisplayName";
+
+                    var reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        UserProfile user = new UserProfile
+                        {
+                            Id = DbUtils.GetInt(reader, "Id"),
+                            FirstName = DbUtils.GetString(reader, "FirstName"),
+                            LastName = DbUtils.GetString(reader, "LastName"),
+                            DisplayName = DbUtils.GetString(reader, "DisplayName"),
+                            UserType = new UserType
+                            {
+                                Name = DbUtils.GetString(reader, "Name")
+                            }
+                        };
+
+                        users.Add(user);
+                    }
+                    reader.Close();
+
+                    return users;
+
+                }
+            }
+
         }
 
         /*
