@@ -101,4 +101,27 @@ export const deletePost = (id) => {
     })
 }
 
+export const updatePost = (post) => {
+    return getToken().then((token) => {
+        return fetch(`${baseUrl}/${post.id}`, {
+            method: "PUT",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(post)
+        }).then((res) => {
+            if (res.ok) {
+                
+            }
+            else if (res.status === 401) {
+                throw new Error("Unauthorized");
+            }
+            else {
+                throw new Error("An unknown error occurred while trying to edit post.",);
+            }
+        })
+    })
+}
+
 

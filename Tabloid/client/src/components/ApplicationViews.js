@@ -16,6 +16,7 @@ import { PostDelete } from "./Posts/PostDelete";
 import { CategoryDelete } from "./category/CategoryDelete";
 import { TagEdit } from "./tag/TagEdit";
 import { CategoryEdit } from "./category/CategoryEdit";
+import { PostEdit } from "./Posts/PostEdit";
 
 
 export default function ApplicationViews({ isLoggedIn }) {
@@ -48,6 +49,7 @@ export default function ApplicationViews({ isLoggedIn }) {
             <Route index element={<PostList />} />
             <Route path=":id" element={<PostDetails />} />
             <Route path="delete/:id" element={<PostDelete />}/>
+            <Route path="edit/:id" element={<PostEdit />} />
             <Route path="user" element={isLoggedIn ? <UserPostList /> : <Navigate to="/login" />} />
             <Route path="create" element={isLoggedIn ? <PostForm /> : <Navigate to="/login" />} />
           </Route>
