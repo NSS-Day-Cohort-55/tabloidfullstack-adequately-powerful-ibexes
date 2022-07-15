@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getPostById } from "../../modules/postManager";
-import { useParams } from "react-router-dom";
-import { Card, CardBody } from "reactstrap";
+import { useParams, useNavigate } from "react-router-dom";
+import { Card, CardBody, Button } from "reactstrap";
 
 export const PostDetails = () => {
     const [post, setPost] = useState({
@@ -13,6 +13,7 @@ export const PostDetails = () => {
             displayName: ""
         }
     })
+    const navigate = useNavigate()
     const { id } = useParams()
 
     const getPost = () => {
@@ -34,6 +35,7 @@ export const PostDetails = () => {
                 <p>{post.content}</p>
                 <p>{post.publishDateTime}</p>
                 <p>{post.userProfile.displayName}</p>
+                <Button onClick={() => navigate(`/posts/${post.id}/comments`)}>View Comments</Button>
             </CardBody>
         </Card>
     )

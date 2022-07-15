@@ -15,6 +15,7 @@ import { TagDelete } from "./tag/TagDelete";
 import { PostDelete } from "./Posts/PostDelete";
 import { CategoryDelete } from "./category/CategoryDelete";
 import { TagEdit } from "./tag/TagEdit";
+import { CommentList } from "./comment/CommentList";
 import { CategoryEdit } from "./category/CategoryEdit";
 
 
@@ -50,6 +51,7 @@ export default function ApplicationViews({ isLoggedIn }) {
             <Route path="delete/:id" element={<PostDelete />}/>
             <Route path="user" element={isLoggedIn ? <UserPostList /> : <Navigate to="/login" />} />
             <Route path="create" element={isLoggedIn ? <PostForm /> : <Navigate to="/login" />} />
+            <Route path=":id/comments" element={<CommentList />} />
           </Route>
 
           <Route path="*" element={<p>Whoops, nothing here...</p>} />
