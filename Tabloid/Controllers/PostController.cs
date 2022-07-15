@@ -45,7 +45,7 @@ namespace Tabloid.Controllers
             return Ok(_postRepository.GetAllPostsByUserId(currentUser.Id));
         }
 
-        [HttpPost("{postId}/tag")]
+        [HttpPost("{postId}/{tagId}")]
         public IActionResult AddTagToPost(int postId, int tagId)
         {
             _postRepository.AddPostTag(postId, tagId);

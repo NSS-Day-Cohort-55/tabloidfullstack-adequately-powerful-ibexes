@@ -60,3 +60,24 @@ export const getAllPostsByUser = () => {
         })
     })
 }
+
+export const addTagToPost = (postId, tagId) => {
+    return getToken().then((token) => {
+        return fetch(`${baseUrl}/${postId}/${tagId}`, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        }).then((res) => {
+            if (res.ok) {
+                return res;
+            } else if (res.status == 401) {
+                throw new Error("Unauthorized");
+            } else {
+                throw new Error(
+                    "An unknown error occurred while trying to add a tag to your post"
+                );
+            }
+        })
+    })
+}
