@@ -14,14 +14,18 @@ export const PostDetails = () => {
         publishDateTime: "",
         userProfile: {
             displayName: ""
-        }
+        },
+        tags: []
     })
     const { id } = useParams();
     const uId = firebase.auth().currentUser.uid;
 
     const getPost = () => {
         getPostById(id)
-        .then(post => setPost(post))
+        .then(post => {
+            setPost(post);
+            console.log();
+        })
     }
     
     useEffect(() => {
@@ -35,6 +39,11 @@ export const PostDetails = () => {
                 <div>
                     <img src={post?.imageLocation} alt={`${post.title} header image`}/>
                 </div>
+                <ul>
+                    {post.tags.map(tag => (
+                        <li>{tag.name}</li>
+                    ))}
+                </ul>
                 {uId == post.userProfile.firebaseUserId && <Link to={`/posts/${post.id}/tag-manager`}>
                     <h3>Manage Tags</h3>
                 </Link>}
