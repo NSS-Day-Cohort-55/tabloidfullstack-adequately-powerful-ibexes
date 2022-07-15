@@ -19,7 +19,7 @@ namespace Tabloid.Repositories
                                     INSERT INTO Subscription (SubscriberUserProfileId, ProviderUserProfileId, BeginDateTime)
                                     OUTPUT INSERTED.ID
                                     VALUES (@SubscriberUserProfileId, @ProviderUserProfileId, @BeginDateTime)";
-                    DbUtils.AddParameter(cmd, "@SubscriptionUserProfileId", subscription.SubscriberUserProfileId);
+                    DbUtils.AddParameter(cmd, "@SubscriberUserProfileId", subscription.SubscriberUserProfileId);
                     DbUtils.AddParameter(cmd, "@ProviderUserProfileId", subscription.ProviderUserProfileId);
                     DbUtils.AddParameter(cmd, "@BeginDateTime", subscription.BeginDateTime);
 
