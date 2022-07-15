@@ -66,7 +66,7 @@ namespace Tabloid.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"INSERT INTO Comment (PostId, UserProfileId, Subject, Content, CreateDateTime)
-                                        OUTPUT INSERTED ID
+                                        OUTPUT INSERTED.ID
                                         VALUES (@PostId, @UserProfileId, @Subject, @Content, @CreateDateTime)";
                     DbUtils.AddParameter(cmd, "@PostId", comment.PostId);
                     DbUtils.AddParameter(cmd, "@UserProfileId", comment.UserProfileId);
