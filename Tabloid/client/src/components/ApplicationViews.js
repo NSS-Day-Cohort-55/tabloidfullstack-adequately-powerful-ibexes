@@ -17,7 +17,8 @@ import { CategoryDelete } from "./category/CategoryDelete";
 import { TagEdit } from "./tag/TagEdit";
 import { CommentList } from "./comment/CommentList";
 import { CategoryEdit } from "./category/CategoryEdit";
-import UserProfileList from "./userProfile/UserProfileList"
+import UserProfileList from "./userProfile/UserProfileList";
+import { UserProfileDetails } from "./userProfile/UserProfileDetails";
 
 
 export default function ApplicationViews({ isLoggedIn }) {
@@ -49,14 +50,15 @@ export default function ApplicationViews({ isLoggedIn }) {
           <Route path="posts">
             <Route index element={<PostList />} />
             <Route path=":id" element={<PostDetails />} />
-            <Route path="delete/:id" element={<PostDelete />}/>
+            <Route path="delete/:id" element={<PostDelete />} />
             <Route path="user" element={isLoggedIn ? <UserPostList /> : <Navigate to="/login" />} />
             <Route path="create" element={isLoggedIn ? <PostForm /> : <Navigate to="/login" />} />
             <Route path=":id/comments" element={<CommentList />} />
           </Route>
 
           <Route path="users">
-            <Route index element={<UserProfileList/>}/>
+            <Route index element={<UserProfileList />} />
+            <Route path="details/:id" element={<UserProfileDetails />} />
           </Route>
 
           <Route path="*" element={<p>Whoops, nothing here...</p>} />
