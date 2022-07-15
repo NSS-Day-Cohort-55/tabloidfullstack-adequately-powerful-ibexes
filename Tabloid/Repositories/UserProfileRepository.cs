@@ -91,7 +91,7 @@ namespace Tabloid.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = "Select  up.Id, up.FirstName, up.LastName, up.DisplayName, ut.Name From UserProfile up Left Join UserType ut On up.UserTypeId = ut.Id";
+                    cmd.CommandText = "Select  up.Id, up.FirstName, up.LastName, up.DisplayName, ut.Name From UserProfile up Left Join UserType ut On up.UserTypeId = ut.Id Order By DisplayName";
 
                     var reader = cmd.ExecuteReader();
 

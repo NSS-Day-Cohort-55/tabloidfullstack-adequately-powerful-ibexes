@@ -17,6 +17,7 @@ import { CategoryDelete } from "./category/CategoryDelete";
 import { TagEdit } from "./tag/TagEdit";
 import { CommentList } from "./comment/CommentList";
 import { CategoryEdit } from "./category/CategoryEdit";
+import UserProfileList from "./userProfile/UserProfileList"
 
 
 export default function ApplicationViews({ isLoggedIn }) {
@@ -52,6 +53,10 @@ export default function ApplicationViews({ isLoggedIn }) {
             <Route path="user" element={isLoggedIn ? <UserPostList /> : <Navigate to="/login" />} />
             <Route path="create" element={isLoggedIn ? <PostForm /> : <Navigate to="/login" />} />
             <Route path=":id/comments" element={<CommentList />} />
+          </Route>
+
+          <Route path="users">
+            <Route index element={<UserProfileList/>}/>
           </Route>
 
           <Route path="*" element={<p>Whoops, nothing here...</p>} />
