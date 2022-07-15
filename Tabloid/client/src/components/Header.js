@@ -39,7 +39,7 @@ export default function Header({ isLoggedIn }) {
               </NavItem>
             }
           </Nav>
-          <Nav className="ms-auto" navbar>
+          <Nav className="mr-auto" navbar>
             { /* When isLoggedIn === true, we will render the Home link */}
             {isLoggedIn &&
               <NavItem>
@@ -47,7 +47,7 @@ export default function Header({ isLoggedIn }) {
               </NavItem>
             }
           </Nav>
-          <Nav className="ms-auto" navbar>
+          <Nav className="mr-auto" navbar>
             { /* When isLoggedIn === true, we will render the Home link */}
             {isLoggedIn &&
               <NavItem>
