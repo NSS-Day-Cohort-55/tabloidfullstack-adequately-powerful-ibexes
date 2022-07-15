@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { getPostById } from "../../modules/postManager";
 import { useParams, useNavigate } from "react-router-dom";
 import { Card, CardBody, Button } from "reactstrap";
+import firebase from "firebase/app";
+import "firebase/auth";
 
 export const PostDetails = () => {
     const [post, setPost] = useState({
@@ -15,6 +17,7 @@ export const PostDetails = () => {
     })
     const navigate = useNavigate()
     const { id } = useParams()
+    const uId = firebase.auth().currentUser.uid;
 
     const getPost = () => {
         getPostById(id)
@@ -36,6 +39,7 @@ export const PostDetails = () => {
                 <p>{post.publishDateTime}</p>
                 <p>{post.userProfile.displayName}</p>
                 <Button onClick={() => navigate(`/posts/${post.id}/comments`)}>View Comments</Button>
+                {uId !== post.userProfile.firebaseUserId ? <Button>Subscribe To User</Button> : ''}
             </CardBody>
         </Card>
     )
