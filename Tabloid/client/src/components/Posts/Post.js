@@ -19,6 +19,11 @@ export const Post = ({ post }) => {
                 <h6>By: {post.userProfile.displayName}</h6>
                 <p>Category: {post.category.name}</p>
                 {uId == post.userProfile.firebaseUserId ?
+                <Button color="info" onClick={() => navigate(`/posts/edit/${post.id}`)}>
+                    Edit
+                </Button> : null
+                }
+                {uId == post.userProfile.firebaseUserId ?
                     <Button color="danger" onClick={() => navigate(`/posts/delete/${post.id}`)}>
                         Delete
                     </Button> : null
