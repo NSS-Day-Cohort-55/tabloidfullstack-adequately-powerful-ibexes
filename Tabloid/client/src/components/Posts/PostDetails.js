@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getPostById } from "../../modules/postManager";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Card, CardBody, Button } from "reactstrap";
-import { addSubscription } from "../../modules/subscriptionManager";
+import { addSubscription } from "../../modules/subscriptionManager"
 import firebase from "firebase/app";
 import "firebase/auth";
 
