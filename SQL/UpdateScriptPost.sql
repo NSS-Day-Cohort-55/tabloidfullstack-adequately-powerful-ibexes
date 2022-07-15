@@ -1,4 +1,7 @@
-﻿ALTER TABLE PostTag
+﻿USE [Tabloid]
+GO
+
+ALTER TABLE PostTag
    DROP CONSTRAINT FK_PostTag_Post;
 
 ALTER TABLE PostTag

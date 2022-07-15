@@ -53,7 +53,6 @@ export default function ApplicationViews({ isLoggedIn }) {
               <Route index element={<PostDetails />} />
               <Route path="tag-manager" element={<TagManager />} />
             </Route>
-            <Route path=":id" element={<PostDetails />} />
             <Route path="delete/:id" element={<PostDelete />}/>
             <Route path="user" element={isLoggedIn ? <UserPostList /> : <Navigate to="/login" />} />
             <Route path="create" element={isLoggedIn ? <PostForm /> : <Navigate to="/login" />} />
