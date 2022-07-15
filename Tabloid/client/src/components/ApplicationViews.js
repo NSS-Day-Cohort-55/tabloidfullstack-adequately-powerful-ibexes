@@ -18,8 +18,10 @@ import { TagEdit } from "./tag/TagEdit";
 import { CommentList } from "./comment/CommentList";
 import { CategoryEdit } from "./category/CategoryEdit";
 import { CommentForm } from "./comment/CommentForm";
+import UserProfileList from "./userProfile/UserProfileList";
+import { UserProfileDetails } from "./userProfile/UserProfileDetails";
 import { PostEdit } from "./Posts/PostEdit";
-import UserProfileList from "./userProfile/UserProfileList"
+
 
 
 export default function ApplicationViews({ isLoggedIn }) {
@@ -60,7 +62,8 @@ export default function ApplicationViews({ isLoggedIn }) {
           </Route>
 
           <Route path="users">
-            <Route index element={<UserProfileList/>}/>
+            <Route index element={<UserProfileList />} />
+            <Route path="details/:id" element={<UserProfileDetails />} />
           </Route>
 
           <Route path="*" element={<p>Whoops, nothing here...</p>} />
