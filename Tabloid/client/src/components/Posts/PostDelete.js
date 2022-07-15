@@ -29,27 +29,22 @@ export const PostDelete = () => {
         getPost()
     }, []);
 
-    if (uId == post.userProfile.firebaseUserId)
-    {
-        return(
-            <Form>
-                <FormGroup>
-                    <Label>Are you sure you'd like to delete the <b>{post.title} post?</b>
-                    </Label>
-                </FormGroup>
-                <FormGroup>
+    return(
+        <Form>
+            <FormGroup>
+                <Label>Are you sure you'd like to delete the <b>{post.title} post?</b>
+                </Label>
+            </FormGroup>
+            <FormGroup>
+                {uId == post.userProfile.firebaseUserId ?
                     <Button color="danger" onClick={() => handleClickDelete()}>
                         Delete
-                    </Button>
-                    <Button onClick={() => navigate("/posts")}>
-                        Cancel
-                    </Button>
-                </FormGroup>
-            </Form>
-        )
-    } else {
-        return (
-            <h1>GET OUT OF HERE YOU SNEAKY BASTARD!!!</h1>
-        )
-    }
+                    </Button> : null
+                }
+                <Button onClick={() => navigate("/posts")}>
+                    Cancel
+                </Button>
+            </FormGroup>
+        </Form>
+    )
 }
