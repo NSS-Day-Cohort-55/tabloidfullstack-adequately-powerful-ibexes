@@ -59,7 +59,6 @@ export const getAllPostsByUser = () => {
     })
 }
 
-<<<<<<< HEAD
 export const addTagToPost = (postId, tagId) => {
     return getToken().then((token) => {
         return fetch(`${baseUrl}/${postId}/${tagId}`, {
@@ -80,7 +79,7 @@ export const addTagToPost = (postId, tagId) => {
         })
     })
 }
-=======
+
 export const addPost = (post) => {
     return getToken().then((token) => {
         return fetch(`${baseUrl}/create`, {
@@ -124,4 +123,3 @@ export const deletePost = (id) => {
 }
 
 
->>>>>>> main
